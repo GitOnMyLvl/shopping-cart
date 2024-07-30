@@ -11,7 +11,7 @@ const Root = () => {
           <nav>
             <ul className="nav-list">
               <li>
-                <NavLink to={`home`} className="nav-link" aria-label="Home">Home</NavLink>
+                <NavLink to={``} className="nav-link" aria-label="Home">Home</NavLink>
               </li>
               <li>
                 <NavLink to={`store`} className="nav-link" aria-label="Store">Store</NavLink>
