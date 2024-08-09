@@ -23,7 +23,7 @@ const Root = () => {
           </nav>
         </div>
       </header>
-      <main>
+      <main className="main-section">
         <Outlet />
       </main>
     </div>

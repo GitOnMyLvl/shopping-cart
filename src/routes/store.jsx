@@ -28,11 +28,11 @@ const Store = () => {
   return(
     <>
       <h1>This is the Store</h1>
-      <div className="products">
+      <section className="products max-container">
         {products.map((product) => {
           return <Product product={product} key={product.id}/>
         })}
-      </div>
+      </section>
     </>
   )
 }
