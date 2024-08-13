@@ -1,11 +1,27 @@
 import PropTypes from 'prop-types'
+import { useState } from 'react'
 
 const Product = ({product}) => {
+  const [selectedNumber, setSelectedNumber] = useState(1);
+
+  const handleChange = (event) => setSelectedNumber(parseInt(event.target.value, 10))
+
   return(
     <div className="product-card">
       <img src={product.image} alt={`Image of ${product.title}`} height={200} width={200}/>
       <h3>{product.title || `No Title found`}</h3>
-      <p>{product.price || `No Price found`}</p>
+      <p>{parseFloat(product.price).toFixed(2) + `€`|| `No Price found`}</p>
+      <div>
+        <label htmlFor="dropdown">Choose amount: </label>
+        <select name="amount-dropdown" id="dropdown" value={selectedNumber} onChange={handleChange}>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
+          <option value={4}>4</option>
+          <option value={5}>5</option>
+        </select>
+      </div>
+      <button>Add to Cart</button>
     </div>
   )
 }
