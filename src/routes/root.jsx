@@ -1,6 +1,11 @@
+import { useContext } from "react";
 import { NavLink, Outlet } from "react-router-dom"
+import { CartContext } from "../context/CartContext";
 
 const Root = () => {
+  const { cart } = useContext(CartContext);
+  const amount = cart.reduce((acc, product) => acc + product.quantity, 0)
+
   return (
     <div>
       <header>
@@ -18,6 +23,7 @@ const Root = () => {
               </li>
               <li>
                 <NavLink to={`cart`} className="nav-link" aria-label="Cart">Cart</NavLink>
+                <p>{amount}</p>
               </li>
             </ul>
           </nav>

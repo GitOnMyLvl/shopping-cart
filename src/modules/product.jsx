@@ -1,16 +1,55 @@
 import PropTypes from 'prop-types'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../context/CartContext';
 
 const Product = ({product}) => {
-  const [selectedNumber, setSelectedNumber] = useState(1);
-  const { addToCart } = useContext(CartContext);
+  const [quantity, setQuantity] = useState(0)
+  const { addToCart, cart, setCart } = useContext(CartContext);
 
-  const handleChange = (event) => setSelectedNumber(parseInt(event.target.value, 10))
+  useEffect(() => {
+    const cartItem = cart.find(item => item.id === product.id);
+    if(cartItem){
+      setQuantity(cartItem.quantity);
+    }
+  }, [cart, product.id]);
+
+  const updateCartQuantity = (newQuantity) => {
+    if (newQuantity <= 0) {
+      setCart(cart.filter(item => item.id !== product.id));
+    } else {
+      setCart(
+        cart.map(item =>
+          item.id === product.id ? { ...item, quantity: newQuantity } : item
+        )
+      );
+    }
+  };
 
   const handleAddToCart = () => {
-    addToCart(product, selectedNumber)
-  }
+    if (quantity === 0) {
+      setQuantity(1);
+      addToCart(product, 1);
+    }
+  };
+
+  const handleIncrease = () => {
+    if(quantity < 10) {
+      const newQuantity = quantity + 1;
+      setQuantity(newQuantity);
+      updateCartQuantity(newQuantity);
+    }
+  };
+
+  const handleDecrease = () => {
+    const newQuantity = quantity - 1;
+    if (newQuantity > 0) {
+      setQuantity(newQuantity);
+      updateCartQuantity(newQuantity);
+    } else {
+      setQuantity(0);
+      updateCartQuantity(0);
+    }
+  };
 
   return(
     <div className="product-card">
@@ -18,22 +57,26 @@ const Product = ({product}) => {
       <h3>{product.title || `No Title found`}</h3>
       <p>{parseFloat(product.price).toFixed(2) + `€`|| `No Price found`}</p>
       <div>
-        <label htmlFor="dropdown">Choose amount: </label>
-        <select name="amount-dropdown" id="dropdown" value={selectedNumber} onChange={handleChange}>
-          <option value={1}>1</option>
-          <option value={2}>2</option>
-          <option value={3}>3</option>
-          <option value={4}>4</option>
-          <option value={5}>5</option>
-        </select>
+        {quantity === 0 ? (
+          <>
+            <button onClick={handleAddToCart}>Add to Cart</button>
+          </>
+        ) : 
+        (
+          <div>
+            <button onClick={handleDecrease}>-</button>
+            <p>{quantity}</p>
+            <button onClick={handleIncrease}>+</button>
+          </div>
+      )}
       </div>
-      <button onClick={handleAddToCart}>Add to Cart</button>
     </div>
   )
 }
 
 Product.propTypes = {
   product: PropTypes.shape({
+    id: PropTypes.number,
     image: PropTypes.string,
     title: PropTypes.string,
     price: PropTypes.oneOfType([
