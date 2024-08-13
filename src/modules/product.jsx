@@ -1,10 +1,16 @@
 import PropTypes from 'prop-types'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { CartContext } from '../context/CartContext';
 
 const Product = ({product}) => {
   const [selectedNumber, setSelectedNumber] = useState(1);
+  const { addToCart } = useContext(CartContext);
 
   const handleChange = (event) => setSelectedNumber(parseInt(event.target.value, 10))
+
+  const handleAddToCart = () => {
+    addToCart(product, selectedNumber)
+  }
 
   return(
     <div className="product-card">
@@ -21,7 +27,7 @@ const Product = ({product}) => {
           <option value={5}>5</option>
         </select>
       </div>
-      <button>Add to Cart</button>
+      <button onClick={handleAddToCart}>Add to Cart</button>
     </div>
   )
 }
