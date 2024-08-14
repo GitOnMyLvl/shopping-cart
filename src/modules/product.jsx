@@ -59,14 +59,14 @@ const Product = ({product}) => {
       <div>
         {quantity === 0 ? (
           <>
-            <button onClick={handleAddToCart}>Add to Cart</button>
+            <button onClick={handleAddToCart} className='add-btn'>Add to Cart</button>
           </>
         ) : 
         (
-          <div>
-            <button onClick={handleDecrease}>-</button>
+          <div className="add-btn number-btn orange-btn">
+            <button onClick={handleDecrease} className="quantity-btn">-</button>
             <p>{quantity}</p>
-            <button onClick={handleIncrease}>+</button>
+            <button onClick={handleIncrease} className="quantity-btn">+</button>
           </div>
       )}
       </div>

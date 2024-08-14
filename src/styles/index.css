@@ -71,3 +71,37 @@ header {
   border-radius: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
+
+
+.add-btn{
+  display: flex;
+  padding: 1rem 1rem;
+  font-size: 1rem;
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 2rem;
+  min-width: 200px;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.number-btn{
+  justify-content: space-between;
+}
+
+.quantity-btn{
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.orange-btn{
+  background-color: orange;
+  border-color:orange;
+
+}
