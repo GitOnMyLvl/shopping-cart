@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types'
 import { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../context/CartContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const Product = ({product}) => {
   const [quantity, setQuantity] = useState(0)
@@ -64,7 +66,7 @@ const Product = ({product}) => {
         ) : 
         (
           <div className="add-btn number-btn orange-btn">
-            <button onClick={handleDecrease} className="quantity-btn">-</button>
+            {quantity === 1 ? (<><button onClick={handleDecrease} className="quantity-btn"><FontAwesomeIcon className="trash-icon" icon={faTrash}/></button></>)  :  (<><button onClick={handleDecrease} className="quantity-btn">-</button></>)}
             <p>{quantity}</p>
             <button onClick={handleIncrease} className="quantity-btn">+</button>
           </div>
