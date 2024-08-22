@@ -20,7 +20,7 @@ header {
   padding: 1rem 2rem;
   align-items: center;
   background: orange;
-  position: fixed;
+  position: sticky;
   width: 100%;
   top: 0;
   z-index: 1000;
@@ -48,10 +48,10 @@ header {
 .main-section{
   width: 100%;
   display: flex;
+  min-height: 100vh;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  margin-top: 5rem;
+  padding-top: 1rem;
 }
 
 .max-container{
@@ -61,7 +61,7 @@ header {
 }
 
 .hero{
-  height: 90vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
