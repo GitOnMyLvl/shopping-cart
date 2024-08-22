@@ -1,13 +1,16 @@
 import { useContext } from "react";
 import { NavLink, Outlet } from "react-router-dom"
 import { CartContext } from "../context/CartContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import Footer from "../modules/footer";
 
 const Root = () => {
   const { cart } = useContext(CartContext);
   const amount = cart.reduce((acc, product) => acc + product.quantity, 0)
 
   return (
-    <div>
+    <>
       <header>
         <div className="header-left">
           <h3>Super Shop</h3>
@@ -22,8 +25,12 @@ const Root = () => {
                 <NavLink to={`store`} className="nav-link" aria-label="Store">Store</NavLink>
               </li>
               <li>
-                <NavLink to={`cart`} className="nav-link" aria-label="Cart">Cart</NavLink>
-                <p>{amount}</p>
+                <NavLink to={`cart`} className="nav-link" aria-label="Cart">
+                  <div className="cart-link">
+                    <p>{amount}</p>
+                    <FontAwesomeIcon icon={faCartShopping} />
+                  </div>
+                </NavLink>
               </li>
             </ul>
           </nav>
@@ -32,7 +39,8 @@ const Root = () => {
       <main className="main-section">
         <Outlet />
       </main>
-    </div>
+      <Footer></Footer>
+    </>
   )
 }
 

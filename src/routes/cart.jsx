@@ -14,7 +14,7 @@ const Cart = () => {
 
   return (
     <section className="max-container">
-      <h1>This is the cart</h1>
+      <h1 className="cart-heading">Products in your cart</h1>
       {cart.length === 0 ? (
         <>
           <h2>Your cart is currently empty!</h2>
@@ -36,8 +36,11 @@ const Cart = () => {
               </li>
             ))}
           </ul>
-          <p>Total price: {parseFloat(total).toFixed(2)}€</p>
-          <button>Checkout</button>
+          <div className="checkout-area">
+            <p className="total">Total price: {parseFloat(total).toFixed(2)}€</p>
+            <button  className="orange-btn checkout-btn">Checkout</button>
+          </div>
+          
         </>
       )}
 
