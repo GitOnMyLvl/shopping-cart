@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Index component > renders page 1`] = `
+<div>
+  <section
+    class="max-container hero"
+  >
+    <h1>
+      Welcome to the 
+      <span
+        class="orange-text"
+      >
+        Super Store
+      </span>
+    </h1>
+    <p>
+      Check ou our 
+      <a
+        class="orange-text"
+        href="/store"
+      >
+        newest offers
+      </a>
+    </p>
+  </section>
+</div>
+`;
